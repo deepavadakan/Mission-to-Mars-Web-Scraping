@@ -69,10 +69,9 @@ def scrape_info():
     mars_df = tables[0]
     mars_df.columns = ["", "Mars"]
     mars_df.set_index("", inplace=True)
-    print(mars_df)
 
     # Convert the table to html
-    mars_df.to_html("mars_facts.html")
+    mars_facts_html = mars_df.to_html()
 
     # Mars Hemispheres
 
@@ -129,6 +128,7 @@ def scrape_info():
         "news_title": news_title,
         "news_p": news_p,
         "featured_image_url": featured_image_url,
+        "mars_facts_html": mars_facts_html,
         "hemisphere_image_urls": hemisphere_image_urls
     }
 
