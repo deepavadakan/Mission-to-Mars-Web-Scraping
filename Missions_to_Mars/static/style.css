@@ -58,11 +58,6 @@ img{
     align-items: center;
 }
 
-table {
-    margin:2px;
-    border: 2px solid var(--p-color) !important;
-}
-
 .img-row {
     display: flex;
     flex-wrap: wrap;

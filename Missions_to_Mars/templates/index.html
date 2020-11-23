@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Our own CSS stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
 
 </head>
 
@@ -52,12 +52,10 @@
             </div>
             <div class="column">
                 <div class="row">
-                    <p class="title">Mars Data</p>
+                    <p class="mars_facts_title">Mars Facts</p>
                 </div>
                 <div class="row mars-table">
-                    <table>
-                        {{ mars_info.mars_facts_html | safe}}
-                    </table>
+                    {{ mars_info.mars_facts_html | safe}}
                 </div>
             </div>
         </div>

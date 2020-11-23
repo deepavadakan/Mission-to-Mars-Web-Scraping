@@ -33,11 +33,9 @@ def scrape_info():
     # find the featured image
     featured_image_url = "https://www.jpl.nasa.gov/" + soup.find('img', class_='main_image')['src']
 
-    
-
     # Mars Hemispheres
 
-    # USe Splinter to navigate to the JPL Featured Space Image
+    # Use Splinter to navigate to the JPL Featured Space Image
     jpl_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(jpl_url)
 
@@ -84,18 +82,12 @@ def scrape_info():
     # URL of page to be scraped
     mars_news_url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
 
-    # Use Splinter to navigate to the JPL Featured Space Image
+    # Use Splinter to navigate to the Mars Latest news page
     browser.visit(mars_news_url)
 
-    mars_news_html = browser.html
-
-    # Create BeautifulSoup object; parse with 'html.parser'
-    soup = BeautifulSoup(mars_news_html, 'html.parser')
-
-    # wait for 5 secs for browser to load
-    #time.sleep(3)
+    # wait for the Mars ne page to load, retrive the Mars table
+    
     # Mars Facts
-
     spacefacts_url = 'https://space-facts.com/mars/'
 
     # Use Panda's `read_html` to parse the url
@@ -109,6 +101,11 @@ def scrape_info():
     # Convert the table to html
     mars_facts_html = mars_df.to_html()
 
+    # retrieve the html from the latest Mars news page
+    mars_news_html = browser.html
+
+    # Create BeautifulSoup object; parse with 'html.parser'
+    soup = BeautifulSoup(mars_news_html, 'html.parser')
     # find the latest News Title and Paragraph Text
     mars_news = soup.find('div', class_='list_text')
 
