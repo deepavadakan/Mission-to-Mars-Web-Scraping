@@ -1,7 +1,6 @@
 body {
     --body-color:rgb(53, 58, 63);
     --bar-color: #FF4500;
-    --hr-color:  #ff7037;
     --text-header-color: white;
     --p-color: white;
     
@@ -19,12 +18,7 @@ p {
     margin-top:10px;
 }
 
-hr {
-    border-top: 1px solid var(--hr-color);
-    width:99%;
-}
-
-.news-title {
+.title {
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -34,10 +28,11 @@ img{
     max-height: 100%;
     display: block;
 }
-.img-col{
-    padding:20px;
+
+#featured-col{
     width: 90%;     
-    align-items: center;   
+    margin-left: auto;
+    margin-right: auto;
 }    
 
 .header-row {
@@ -46,10 +41,30 @@ img{
     font-size: 2em;
     font-weight: bold;
     text-align: center;
-}
-.mars-table {
-    font-size: 2em;
-    color: var(--p-color);
-    padding:20px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
+.mars-table {
+    font-size: 1.5em;
+    color: var(--p-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+  
+.column {
+    flex: 50%;
+    padding: 0 20px;
+}
+  
+.column img {
+    margin-top: 20px;
+}
+  

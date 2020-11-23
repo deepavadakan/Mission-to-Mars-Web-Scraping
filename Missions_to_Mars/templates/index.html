@@ -34,43 +34,47 @@
             Latest Mars News
         </div>
 
-        <br>    
         <div class="row">
-            <p class="news-title">{{mars_info.news_title}}<p>
-            <p>{{mars_info.news_p}}<p>
+            <p class="title">{{mars_info.news_title}}
+            <p>
+            <p>{{mars_info.news_p}}
+            <p>
         </div>
-        <br>
 
         <!--Featured large size image-->
         <div class="row header-row">
             Featured Mars Image
         </div>
 
-        <div class="row">
-            <div class="img-col">
+        <div class="row img-row">
+            <div class="column" id="featured-img">
                 <img src="{{ mars_info.featured_image_url }}" alt="Featured Mars Image">
             </div>
-        </div>
-
-        <!--Mars Facts Table-->
-        <div class="row header-row">
-            Mars Facts
-        </div>
-        <div class="row table-responsive mars-table">
-            <table>
-                {{ mars_info.mars_facts_html | safe}}
-            </table>
+            <div class="column">
+                <div class="row">
+                    <p class="title">Mars Data</p>
+                </div>
+                <div class="row mars-table">
+                    <table>
+                        {{ mars_info.mars_facts_html | safe}}
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!--The 4 Mars Hemispheres-->
         <div class="row header-row">
             Mars Hemispheres
         </div>
-        <div class="row">
+        <div class="row img-row">
             {% for hemisphere in mars_info.hemisphere_image_urls %}
-            <div class="col-5 img-col">
-                <p class="news-title">{{ hemisphere.title }}</p>
-                <img src="{{ hemisphere.image_url }}" alt="{{ hemisphere.title }}">
+            <div class="column">
+                <div class="card">
+                    <img src="{{ hemisphere.image_url }}" class="card-img-top" alt="{{ hemisphere.title }}">
+                    <div class="card-body">
+                        <p class="title">{{ hemisphere.title }}</p>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
