@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Our own CSS stylesheet -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 
 </head>
 
@@ -20,62 +20,59 @@
     <div class="container-fluid">
 
         <!--Scrape button-->
-        <div class="jumbotron text-center">
-            <h1>Mission to Mars</h1>
-            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
+        <div class="row">
+            <div class="jumbotron text-center">
+                <h1>Mission to Mars</h1>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
+            </div>
+
+            <!--Display scraped Mars info-->
         </div>
 
-        <!--Display scraped Mars info-->
-        <div>
-            <!--Latest news headline and brief paragraph-->
-            <div class="row">
-                <nav class="navbar navbar-light bg-light">
-                    <span class="navbar-brand mb-0 h1">Latest Mars News</span>
-                </nav>
-            </div>
-            <div class="row">
-                <h3>{{mars_info.news_title}}</h3>
-                <h4>{{mars_info.news_p}}</h4>
-            </div>
+        <!--Latest Mars news headline and brief paragraph-->
+        <div class="row header-row">
+            Latest Mars News
+        </div>
 
-            <!--Featured large size image-->
-            <div class="row">
-                <nav class="navbar navbar-light bg-light">
-                    <span class="navbar-brand mb-0 h1">Featured Mars Image</span>
-                </nav>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12">
-                        <figure class="figure">
-                            <img src="{{ mars_info.featured_image_url }}" class="figure-img img-fluid rounded" alt="Featured Mars Image">
-                            <figcaption class="figure-caption text-right">Featured Mars Image</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="table-responsive">
-                            {{ mars_info.mars_facts_html }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <br>    
+        <div class="row">
+            <p class="news-title">{{mars_info.news_title}}<p>
+            <p>{{mars_info.news_p}}<p>
+        </div>
+        <br>
 
-            <div class="row">
-                <!--The 4 Mars Hemispheres-->
-                <nav class="navbar navbar-light bg-light">
-                    <span class="navbar-brand mb-0 h1">Mars Hemispheres</span>
-                </nav>
-                <div class="row">
-                    {% for hemisphere in mars_info.hemisphere_image_urls%}
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="media">
-                            <img src="{{ hemisphere.image_url }}" class="mr-3" alt="{{ hemisphere.title }}">
-                            <div class="media-body">
-                                <h5 class="mt-0">{{ hemisphere.title }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+        <!--Featured large size image-->
+        <div class="row header-row">
+            Featured Mars Image
+        </div>
+
+        <div class="row">
+            <div class="img-col">
+                <img src="{{ mars_info.featured_image_url }}" alt="Featured Mars Image">
             </div>
+        </div>
+
+        <!--Mars Facts Table-->
+        <div class="row header-row">
+            Mars Facts
+        </div>
+        <div class="row table-responsive mars-table">
+            <table>
+                {{ mars_info.mars_facts_html | safe}}
+            </table>
+        </div>
+
+        <!--The 4 Mars Hemispheres-->
+        <div class="row header-row">
+            Mars Hemispheres
+        </div>
+        <div class="row">
+            {% for hemisphere in mars_info.hemisphere_image_urls %}
+            <div class="col-5 img-col">
+                <p class="news-title">{{ hemisphere.title }}</p>
+                <img src="{{ hemisphere.image_url }}" alt="{{ hemisphere.title }}">
+            </div>
+            {% endfor %}
         </div>
     </div>
 

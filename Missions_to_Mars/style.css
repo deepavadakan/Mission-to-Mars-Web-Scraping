@@ -41,12 +41,11 @@ p {
     color: var(--p-color);
 }
 
-img {
-    width: 100%;
-}
-
-.navbar {
+.header_bar {
     background-color:var(--top-bar-color);
+    font-size: 2em;
+    color:var(--main-color);
+    font-size: 2em;
     padding:0px;
     margin-bottom:30px;
 }
