@@ -17,7 +17,6 @@ def scrape_info():
 
     # JPL Mars Space Images - Featured Image
 
- 
     # USe Splinter to navigate to the JPL Featured Space Image
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(url)
@@ -32,6 +31,7 @@ def scrape_info():
 
     # find the featured image
     featured_image_url = "https://www.jpl.nasa.gov/" + soup.find('img', class_='main_image')['src']
+    featured_image_desc = soup.find('img', class_='main_image')['title']
 
     # Mars Hemispheres
 
@@ -122,6 +122,7 @@ def scrape_info():
         "news_title": news_title,
         "news_p": news_p,
         "featured_image_url": featured_image_url,
+        "featured_image_desc":featured_image_desc,
         "mars_facts_html": mars_facts_html,
         "hemisphere_image_urls": hemisphere_image_urls
     }
