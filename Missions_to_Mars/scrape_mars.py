@@ -20,6 +20,7 @@ def scrape_info():
     # USe Splinter to navigate to the JPL Featured Space Image
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(url)
+    time.sleep(1)
 
     # Find the link to featured image
     browser.links.find_by_partial_text('FULL IMAGE').click()
@@ -45,15 +46,18 @@ def scrape_info():
     # create empty list for images and titles
     hemisphere_image_urls = []
 
-    # Find the 4 hemisphere images and titles
-    for i in [1,3,5,7]:
-        
-        # Find all the links to the hemispheres
-        results = browser.links.find_by_partial_href('/search/map/Mars/Viking')
-        
-        # Click on the image link to find full size image
-        results[i].click()
+    lists = soup.find_all('div', class_='item')
 
+    # Find the 4 hemisphere images and titles
+    for item in lists:
+        
+        # Retrieve h3 element that contains title
+        title = item.find('h3').text
+        print(title)
+        
+        # Click on link to full size image
+        browser.click_link_by_partial_text(title)
+        
         # HTML object
         html = browser.html
 
@@ -61,11 +65,10 @@ def scrape_info():
         soup = BeautifulSoup(html, 'html.parser')
 
         # Retrieve list element that contain image
+        # Retrieve list element that contain image
         li_element = soup.find_all('li')
         image_url = li_element[0].find('a')['href']
-        
-        # Retrieve h2 element that contains title
-        title = soup.find('h2', class_='title').text
+        print(image_url)
         
         # append title, image_url as dict to list
         hemisphere_image_urls_dict = {}
